@@ -47,12 +47,12 @@ user2.name = "Niyi"
 // Imagine we started implementing user objects using data properties 
 // name and age:
 
-function User3(name, age){
-    this.name = name,
+function UserT(name, age){
+    this.name = name
     this.age = age
 }
 
-let john = new User3("John", 25)
+let john = new UserT("John", 25)
 
 console.log(john.age) // 25
 
@@ -61,7 +61,7 @@ console.log(john.age) // 25
 // because it’s more precise and convenient:
 
 function User(name, birthday){
-    this.name = name,
+    this.name = name
     this.birthday = birthday
 }
 
@@ -98,4 +98,26 @@ john = new User("John", new Date(1992, 4, 20))
 console.log(john.age) // 33
 
 console.log(john.birthday) // Wed May 20 1992 00:00:00 GMT+0100 (West Africa Standard Time)
+
+
+
+
+// WHAT IS A CLASS
+// In object-oriented programming, a class is an extensible program-code-template 
+// for creating objects, providing initial values for state (member variables) 
+// and implementations of behavior (member functions or methods).
+
+// code template that spits out objects, it gives the first variables and methods for the obj
+
+// function constructors do this same thing
+// function UserC(name, age){
+//     const obj = {} // this is hidden by deaault in fn constructors
+//     this.name = name
+//     this.age = age
+//     return obj // and this too is hidden by deaault in fn constructors
+// }
+
+// let johnny = new UserC("John", 25) // john = {name = "John", age = 25}
+// let waliu = new UserC("Waliu", 12) // waliu = {name = "Waliu", age = 12}
+// console.log(waliu.age) // 12
 
