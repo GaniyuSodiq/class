@@ -121,3 +121,62 @@ console.log(john.birthday) // Wed May 20 1992 00:00:00 GMT+0100 (West Africa Sta
 // let waliu = new UserC("Waliu", 12) // waliu = {name = "Waliu", age = 12}
 // console.log(waliu.age) // 12
 
+// basix syntax
+
+class Yourclass {
+    constructor(){}
+    method(){}
+    anotherMethod(){}
+    andAnotherMethod(){}
+}
+
+// the constructor method is executed by default when the class is called
+// so constructor() is use to initialize the obj variable
+
+
+// basic example
+class Userclass{
+    constructor(name){
+        this.name = name 
+    }
+    sayHi(){
+        console.log(this.name)
+    }
+}
+
+let newUser = new Userclass("Wale")
+
+newUser.sayHi() // Wale
+
+// when we called 'new Userclass("Wale")' 
+// a new object is created and stored in 'user'
+// and this new object contains all the methods in the class
+// the constructor object is executed upon calling the class with 'new Userclass("Wale")'
+
+// the class decalration looks like object literal BUT it is not
+// so the methods must not be separated with comma (,)
+// else you will get sysntax error
+
+
+// SO WHAT EXACTLY IS A CLASS?
+
+// class is a special kind of function
+console.log(typeof Userclass) // function
+
+// when the class is called,
+// 1- It creates a function named Userclass, 
+// The function becomes the result of the class declaration. 
+// The function code is taken from the constructor method 
+// so more precisely, the constructor method
+// (assumed empty if we don’t write such method).
+// the class === the constructor method
+// check if the content of Userclass is same as the content in Userclass.prototype.constructor
+console.log(Userclass === Userclass.prototype.constructor) // true
+// check if the content of Userclass is same as the content in Userclass.prototype.sayHi
+console.log(Userclass === Userclass.prototype.sayHi) // false
+
+// 2- Stores all other methods, such as sayHi in our sample above, in Userclass.prototype.
+console.log(Userclass.prototype.sayHi) // sayHi(){ console.log(this.name) }
+
+// 3- Everything in the class declaration are properties of our class
+console.log(Object.getOwnPropertyNames(Userclass.prototype)) //  ['constructor', 'sayHi']
