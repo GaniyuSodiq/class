@@ -1,3 +1,5 @@
+// Accessor properties are represented by “getter” and “setter” methods.
+
 let user = {
     name: "Smith",
     surname: "Cooper",
@@ -38,3 +40,62 @@ let user2 = {
 }
 
 user2.name = "Niyi"
+
+
+// USING FOR COMPATIBILITY
+
+// Imagine we started implementing user objects using data properties 
+// name and age:
+
+function User3(name, age){
+    this.name = name,
+    this.age = age
+}
+
+let john = new User3("John", 25)
+
+console.log(john.age) // 25
+
+// …But sooner or later, things may change. 
+// Instead of age we may decide to store birthday, 
+// because it’s more precise and convenient:
+
+function User(name, birthday){
+    this.name = name,
+    this.birthday = birthday
+}
+
+john = new User("john", new Date(1993, 6, 1))
+
+console.log(john.birthday) // Thu Jul 01 1993 00:00:00 GMT+0100 (West Africa Standard Time)
+
+// Now what to do with the old code that still uses age property? 
+// We can try to find all such places and fix them, 
+// but that takes time and can be hard to do if 
+// that code is used by many other people. And besides, 
+// age is a nice thing to have in user, right?
+
+// Let’s keep it.
+
+// Adding a getter for age solves the problem:
+
+function User(name, birthday){
+    this.name = name,
+    this.birthday = birthday
+
+    // age is calculated from the current date and birthday
+
+    Object.defineProperty(this, "age", {
+        get(){
+            let thisYear = new Date().getFullYear()
+            return thisYear - this.birthday.getFullYear()
+        }
+    })
+}
+
+john = new User("John", new Date(1992, 4, 20))
+
+console.log(john.age) // 33
+
+console.log(john.birthday) // Wed May 20 1992 00:00:00 GMT+0100 (West Africa Standard Time)
+
