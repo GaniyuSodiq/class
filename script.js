@@ -20,3 +20,21 @@ console.log(user.fullname) // Smith Cooper
 user.fullname = "Sodiq Ganiyu"
 
 console.log(user.fullname) // Sodiq Ganiyu
+
+
+// SMARTER GETTER/SETTER
+
+let user2 = {
+    get name(){
+        return this._name
+    },
+    set name(value){
+        if(value.length < 4){
+            console.log(`Name is too short`)
+            return
+        }
+       this._name = value
+    }
+}
+
+user2.name = "Niyi"
